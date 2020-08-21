@@ -1,0 +1,202 @@
+/* You can add global styles to this file, and also import other style files */
+.title {
+  height: 150px;
+}
+.logo img{
+  height:170px;
+   width:170px;
+   margin-left: 50px;
+   margin-top: -10px;
+}
+small {
+  margin-left: 5px;
+  border-radius: 10px;
+  font-weight: bolder;
+  padding: 2px;
+}
+.title h1{
+  font-weight: bolder;
+  font-size: 100px;
+  color:crimson;
+  margin: 10px;
+  margin-left: 30px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+.validationError{
+  color: white;
+  background-color: red;
+}
+
+
+.navBar{ 
+  background-color: #e3f2fd;
+}
+.sideBar{
+  margin-top: 60px;
+}
+.sideBar a{
+  background-color: black;
+  color: aqua;
+  padding: 10px;
+  Margin-bottom: 20px;
+}
+
+.sideBar :hover {
+  background-color: darkslategray;
+}
+
+.navBar a {
+  color: black;
+  font-weight: bolder;
+  margin: 5px;
+  padding: 5px;
+}
+.navBar :hover{
+  color: white;
+  background-color: crimson;
+
+}
+
+.wrapper{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 50px;
+    color: ghostwhite;
+    background-color: crimson;
+    box-shadow: 10px 10px black;
+    padding: 10px;
+    width: 800px;
+    margin: auto;
+    margin-bottom: 40px;
+  }
+
+.applyBtn{
+  padding: 20px;
+  width: 400px;
+  margin: auto;
+  margin-top: 40px;
+  font-weight: bolder;
+  font-size: 30px;
+  color: ghostwhite;
+  background-color: teal;
+}
+
+.applyBtn:hover {
+  box-shadow: 5px 10px black;
+}
+
+body{
+  background-color:tan;
+}
+.tableHeading{
+  font-size: 20px;
+  text-align: center;
+}
+tr {
+  text-align: center;
+}
+
+
+@media (max-width: 575.98px) { 
+  .sideBar {
+      display: none;
+  }
+  .title h1 {
+    font-size: 45px;
+    padding-top:35px;
+
+  }
+  .wrapper{
+    font-size: 30px;
+    padding: 10px;
+    width: 400px;
+  }
+  .logo img{
+    height:130px;
+    width:130px;
+    margin : 0px;
+    margin-top: 10px;
+  }
+  .introtext h3{
+    font-size: 20px;
+  }
+  .tableHeading{
+    font-size: 12px;
+  }
+  tr{
+    font-size: 12px;
+  }
+}
+
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .sideBar {
+      display: none;
+  }
+  .title h1 {
+    font-size: 55px;
+    padding-top: 35px;
+  }
+  .wrapper{
+    font-size: 30px;
+    padding: 10px;
+    width: 500px;
+  }
+  .logo img{
+    margin: 5px;
+    height:150px;
+     width:150px;
+  }
+  .introtext h3{
+    font-size: 20px;
+  }
+  .tableHeading{
+    font-size: 12px;
+  }
+  tr{
+    font-size: 12px;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+  .title h1 {
+    font-size: 75px;
+    padding-top: 20px;
+  }
+  .wrapper{
+    font-size: 40px;
+    padding: 10px;
+    width: 500px;
+  }
+  .logo img{
+    margin: 5px;
+    height:150px;
+    width:150px;
+  }
+  .introtext h3{
+    font-size: 25px;
+  }
+  .tableHeading{
+    font-size: 15px;
+  }
+  tr{
+    font-size: 15px;
+  }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199.98px){
+
+  .title h1 {
+    font-size: 90px;
+    padding-top: 10px;
+  }
+  .wrapper{
+    font-size: 50px;
+    padding: 10px;
+    width: 700px;
+  }
+}

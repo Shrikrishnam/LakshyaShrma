@@ -1,0 +1,135 @@
+<h1 class="wrapper">Place an Appointment</h1>
+<form class="appointmentForm p-5" [formGroup]="fitnessForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="exampleInputfirstname">First Name</label>
+            <input type="text" class="form-control" placeholder="First Name" formControlName="firstname" autofocus>
+            <small class="validationError" *ngIf="formErrors.firstname">{{formErrors.firstname}}</small>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="exampleInputlastname">Last Name</label>
+            <input type="text" class="form-control" placeholder="Last Name" formControlName="lastname">
+            <small class="validationError" *ngIf="formErrors.lastname">{{formErrors.lastname}}</small>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="exampleInputage">Age</label>
+            <input type="number" class="form-control" placeholder="Age" formControlName="age">
+            <small class="validationError" *ngIf="formErrors.age">{{formErrors.age}}</small>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="exampleInputphonenumber">Phone Number</label>
+            <input type="tel" class="form-control" placeholder="Phone Number" formControlName="phonenumber"
+                pattern="[0-9]{10}" required>
+            <small class="validationError" *ngIf="formErrors.phonenumber">{{formErrors.phonenumber}}</small>
+        </div>
+    </div>
+
+    <div class="form-group row-10 ">
+        <label for="exampleInputemail">Email</label>
+        <input type="email" class="form-control " placeholder="Email" email formControlName="email"
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        <small class="validationError" *ngIf="formErrors.email">{{formErrors.email}}</small>
+    </div>
+
+    <fieldset class="form-group">
+        <legend>Address:</legend>
+        <label for="streetaddress">Street Address:</label>
+        <input type="text" class="form-control" placeholder="Address" formControlName="streetaddress">
+        <small class="validationError" *ngIf="formErrors.streetaddress">{{formErrors.streetaddress}}</small>
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" placeholder="City" formControlName="city">
+                <small class="validationError" *ngIf="formErrors.city">{{formErrors.city}}</small>
+            </div>
+            <div class="col-md-6">
+                <label for="state">State:</label>
+                <input type="text" class="form-control" placeholder="State" formControlName="state">
+                <small class="validationError" *ngIf="formErrors.state">{{formErrors.state}}</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="country">Country:</label>
+                <input type="text" class="form-control" placeholder="Country" formControlName="country">
+                <small class="validationError" *ngIf="formErrors.country">{{formErrors.country}}</small>
+            </div>
+            <div class="col-md-6">
+                <label for="pincode">Pincode:</label>
+                <input type="text" class="form-control" placeholder="Pincode" formControlName="pincode">
+                <small class="validationError" *ngIf="formErrors.pincode">{{formErrors.pincode}}</small>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="form-group row">
+        <span class="col-md-3">Trainer Preferences:</span>
+        <div class="col-md-4">
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" formControlName="trainerpreference" id="exampleRadios1"
+                    value="Male Trainer" (change)="showBox = false">
+                <label class="custom-control-label" for="exampleRadios1">Male Trainer</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" formControlName=trainerpreference id="exampleRadios2"
+                    value="Female Trainer" (change)="showBox = false">
+                <label class="custom-control-label" for="exampleRadios2">Female Trainer</label>
+            </div>
+            <div class="custom-control custom-radio ">
+                <input class="custom-control-input" type="radio" formControlName=trainerpreference id="exampleRadios3"
+                    value="No preference" (change)="showBox = false">
+                <label class="custom-control-label" for="exampleRadios3" >No Preferences</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" formControlName=trainerpreference id="exampleRadios4"
+                    value="other" (change)="displayBox()">
+                <label class="custom-control-label" for="exampleRadios4">Other</label>
+            </div>
+            <div *ngIf="showBox" class="form-group row ml-3">
+                <label for="trainername" class="col-6">Trainer Name</label>
+                <input class="form-control-sm col-6" id="trainername" type="text" [formControl]="trainername">
+            </div> 
+        </div>
+    </div>
+
+    <div class="form-group row mt-3">
+        <label class="col-md-3">Physiotherapist Required:</label>
+        <div class="col-md-4">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input class="custom-control-input" type="radio" formControlName="physiotherapist" id="exampleRadios6"
+                    value="Yes" checked>
+                <label class="custom-control-label" for="exampleRadios6">Yes</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input class="custom-control-input" type="radio" formControlName="physiotherapist" id="exampleRadios7"
+                    value="No">
+                <label class="custom-control-label" for="exampleRadios7">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="selectPackage">Packages</label>
+        <select class="form-control" formControlName="packages" id="selectPackages" (change)="updateValue()">
+            <option value="500" checked>10 Day Trial Package will Cost 500</option>
+            <option value="1500">One Month Package will Cost 1500</option>
+            <option value="3000">Three Month Package will Cost 3000</option>
+            <option value="5000">Six Month Package will Cost 5000</option>
+            <option value="10000">One Year Package will Cost 10000</option>
+        </select>
+        <small class="validationError" *ngIf="formErrors.firstname">{{formErrors.packages}}</small>
+    </div>
+    <div class="form-group row mt-4">
+        <label for="cost" class="col-1">INR :</label>
+        <span class=" col-2">{{ fitnessForm.value.inr}}{{ fitnessForm.value.paisa}}</span>
+    </div>
+    <div class=" row justify-content-center mt-5">
+        <button type="submit" class="btn btn-lg btn-primary col-4" item-align="left"
+            [disabled]="fitnessForm.invalid">Submit</button>
+    </div>
+</form>

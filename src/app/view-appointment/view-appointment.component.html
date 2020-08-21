@@ -1,0 +1,208 @@
+<div class="table-responsive">
+    <h1 class="wrapper">List of Appointment</h1>
+    <table class="table table-hover table-dark">
+        <caption>List of Appointment</caption>
+        <thead>
+            <tr>
+                <th class="h1 tableHeading" scope="col">Sl NO</th>
+                <th class="h2 tableHeading" scope="col">Name</th>
+                <th class="h3 tableHeading" scope="col">Address</th>
+                <th class="h4 tableHeading" scope="col">City</th>
+                <th class="h5 tableHeading" scope="col">Package</th>
+                <th class="h6 tableHeading" scope="col">Trainer Preference</th>
+                <th class="h7 tableHeading" scope="col">Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td scope="row">{{ user.id }}</td>
+                <td>{{ user.firstname}} {{ user.lastname}}</td>
+                <td>{{ user.streetaddress}}</td>
+                <td> {{ user.city }}</td>
+                <td>{{ user.packages}}</td>
+                <td>{{ user.trainerpreference}}</td>
+                <td>{{ user.phonenumber}}</td>
+                <td>
+                    <button class="btn-primary" data-toggle="modal" data-target="#editUserDetail"
+                        (click)="updateDetails(user)"><i class="fas fa-edit"></i></button>
+                    <button class="btn-danger" data-toggle="modal" data-target="#deleteConfirmation"
+                        (click)=setValue(user)><i class="fa fa-close"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="deleteConfirmation" tabindex="-1" aria-labelledby="ModalLabel1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel1">Delete the Appointment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Confirm you want to delete the Appointment
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" #closeBtn>Cancle</button>
+                <button type="button" class="btn btn-primary" (click)="deleteAppointment(user)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editUserDetail" tabindex="-1" aria-labelledby="ModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel2">Update the Appointment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="appointmentForm p-5" [formGroup]="fitnessForm" (ngSubmit)="onSubmit()" novalidate>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="Inputfirstname">First Name</label>
+                            <input type="text" class="form-control" placeholder="First Name" formControlName="firstname"
+                                autofocus>
+                            <small class="validationError" *ngIf="formErrors.firstname">{{formErrors.firstname}}</small>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="Inputlastname">Last Name</label>
+                            <input type="text" class="form-control" placeholder="Last Name" formControlName="lastname">
+                            <small class="validationError" *ngIf="formErrors.lastname">{{formErrors.lastname}}</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="Inputage">Age</label>
+                            <input type="number" class="form-control" placeholder="Age" formControlName="age">
+                            <small class="validationError" *ngIf="formErrors.age">{{formErrors.age}}</small>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="Inputphonenumber">Phone Number</label>
+                            <input type="tel" class="form-control" placeholder="Phone Number"
+                                formControlName="phonenumber" pattern="[0-9]{10}" required>
+                            <small class="validationError"
+                                *ngIf="formErrors.phonenumber">{{formErrors.phonenumber}}</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row-10 ">
+                        <label for="Inputemail">Email</label>
+                        <input type="email" class="form-control " placeholder="Email" email formControlName="email"
+                            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                        <small class="validationError" *ngIf="formErrors.email">{{formErrors.email}}</small>
+                    </div>
+
+                    <fieldset class="form-group">
+                        <legend>Address:</legend>
+                        <label for="streetaddress">Street Address:</label>
+                        <input type="text" class="form-control" placeholder="Address" formControlName="streetaddress">
+                        <small class="validationError"
+                            *ngIf="formErrors.streetaddress">{{formErrors.streetaddress}}</small>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="city">City:</label>
+                                <input type="text" class="form-control" placeholder="City" formControlName="city">
+                                <small class="validationError" *ngIf="formErrors.city">{{formErrors.city}}</small>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="state">State:</label>
+                                <input type="text" class="form-control" placeholder="State" formControlName="state">
+                                <small class="validationError" *ngIf="formErrors.state">{{formErrors.state}}</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="country">Country:</label>
+                                <input type="text" class="form-control" placeholder="Country" formControlName="country">
+                                <small class="validationError" *ngIf="formErrors.country">{{formErrors.country}}</small>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pincode">Pincode:</label>
+                                <input type="text" class="form-control" placeholder="Pincode" formControlName="pincode">
+                                <small class="validationError" *ngIf="formErrors.pincode">{{formErrors.pincode}}</small>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group row">
+                        <span class="col-md-3">Trainer Preferences:</span>
+                        <div class="col-md-4">
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" formControlName="trainerpreference"
+                                    id="Radios1" value="Male Trainer" (change)="showBox = false">
+                                <label class="custom-control-label" for="Radios1">Male Trainer</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" formControlName=trainerpreference
+                                    id="Radios2" value="Female Trainer" (change)="showBox = false">
+                                <label class="custom-control-label" for="Radios2">Female Trainer</label>
+                            </div>
+                            <div class="custom-control custom-radio ">
+                                <input class="custom-control-input" type="radio" formControlName=trainerpreference
+                                    id="Radios3" value="No preference" (change)="showBox = false">
+                                <label class="custom-control-label" for="Radios3" >No Preferences</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" formControlName=trainerpreference
+                                    id="Radios4" value="other" (change)="displayBox()">
+                                <label class="custom-control-label" for="Radios4">Other</label>
+                            </div>
+                        <div *ngIf="showBox" class="form-group row ml-3">
+                            <label for="trainername" class="col-6">Trainer Name</label>
+                            <input class="form-control-sm col-6" id="trainername" type="text" [formControl]="trainername">       
+                        </div>
+                    </div>
+                    </div>
+        
+
+                    <div class="form-group row mt-3">
+                        <label class="col-md-3">Physiotherapist Required:</label>
+                        <div class="col-md-4">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input class="custom-control-input" type="radio" formControlName="physiotherapist"
+                                    id="Radios6" value="Yes" checked>
+                                <label class="custom-control-label" for="Radios6">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input class="custom-control-input" type="radio" formControlName="physiotherapist"
+                                    id="Radios7" value="No">
+                                <label class="custom-control-label" for="Radios7">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="selectPackage">Packages</label>
+                        <select class="form-control" formControlName="packages" id="selectPackages"
+                            (change)="updateValue()">
+                            <option value="500" checked>10 Day Trial Package will Cost 500</option>
+                            <option value="1500">One Month Package will Cost 1500</option>
+                            <option value="3000">Three Month Package will Cost 3000</option>
+                            <option value="5000">Six Month Package will Cost 5000</option>
+                            <option value="10000">One Year Package will Cost 10000</option>
+                        </select>
+                        <small class="validationError" *ngIf="formErrors.firstname">{{formErrors.packages}}</small>
+                    </div>
+                    <div class="form-group row mt-4">
+                        <label for="cost" class="col-2">INR :</label>
+                        <span class=" col-2">{{ fitnessForm.value.inr}}.{{ fitnessForm.value.paisa}}</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" #hideModal data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="fitnessForm.invalid"
+                    (click)="updateApointment()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

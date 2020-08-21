@@ -1,0 +1,34 @@
+<div class="container-fluid">
+	<div class="row title">
+		<div class="col-3 col-md-3 logo">
+				<img src="../assets/images/fitness.png"  alt="fitness">
+		</div>
+		<div class="col-9 col-md-9">
+			<h1>Fitness Tracker</h1>
+		</div>
+	</div>
+	<nav class="navbar nav-justified flex-column flex-sm-row navBar">
+		<a class="flex-sm-fill text-sm-center nav-link nav-item" routerLink="/landing-page">Home</a>
+		<a class="flex-sm-fill text-sm-center nav-link nav-item" routerLink="/place-fitness-trainer-appointment">Place
+			Appointment</a>
+		<a class="flex-sm-fill text-sm-center nav-link nav-item" routerLink="/view-appointment">View Appointment</a>
+		<a class="flex-sm-fill text-sm-center nav-link nav-item" routerLink="#">Search</a>
+		<a class="flex-sm-fill text-sm-center nav-link nav-item" routerLink="/contact-us">Contact US</a>
+	</nav>
+	<div class="row">
+		<div class="col-md-2">
+			<nav class="nav nav-justified navbar-light flex-sm-column sideBar">
+				<a class="flex-sm-fill text-sm-center nav-link rounded-pill" routerLink="/landing-page">Home</a>
+				<a class="flex-sm-fill text-sm-center nav-link rounded-pill" routerLink="/place-fitness-trainer-appointment">Place Appointment</a>
+				<a class="flex-sm-fill text-sm-center nav-link rounded-pill" routerLink="/view-appointment">View Appointment</a>
+				<a class="flex-sm-fill text-sm-center nav-link rounded-pill" routerLink="#">Search</a>
+				<a class="flex-sm-fill text-sm-center nav-link rounded-pill" routerLink="/contact-us">Contact US</a>
+			</nav>
+		</div>
+		<div class="col-sm-12 col-md-10 ">
+			<div class="jumbotron mt-5 mr-md-5">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+	</div>
+</div>
